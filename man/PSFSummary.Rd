@@ -43,10 +43,19 @@ PSFSummary(outfile="example-res.csv",infile="example.csv",Pft=c(1e-4,1e-6),Cvmu=
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+library(PSFCalc)
+library(LimitState)
+Di=2400; tr=13
+#########################################
+###You can modify if necessary
+Pft <- c(1e-4,1e-6)
+Cvmu <- c(0.1,0.2)
+Cvcov <- c(0.5,0.8)
+#########################################
+outfile <-paste("Di",as.character(Di),"tr",as.character(tr),"-res.csv",sep="")
 infile <- system.file("example.csv",package="PSFCalc")
-fdata <- read.csv(infile)
 aa <- read.csv(infile)
-PSFSummary(indata=aa,Pft=c(1e-4),Cvmu=c(0.1),Cvcov=c(0.5))
+PSFSummary(outfile=outfile,indata=aa,Pft=Pft,Cvmu=Cvmu,Cvcov=Cvcov,Di=Di,tr=tr)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
