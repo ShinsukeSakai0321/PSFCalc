@@ -6,7 +6,9 @@ PSFSummary <- function(outfile="example-res.csv",indata,Pft=c(1e-4,1e-6),Cvmu=c(
         i <- i+1; if(i==1){iflag <- FALSE}else{iflag <- TRUE}
         psfcal <- PSFControl$new(indata)
         rescalc <- psfcal$PSFEval(Di=Di,tr=tr,Pft=Pft[iPft],Cvmu=Cvmu[iCvmu],Cvcov=Cvcov[iCvcov],Sa=Sa)
+        options(warn=-1)
         write.table(rescalc,outfile,sep=",",quote=F,row.names=F,append=iflag)
+        options(warn=0)
       }
     }
   }
