@@ -2,7 +2,7 @@
 \alias{PSFContour}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Draw contour for specific PSF condition for PSF
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -31,10 +31,10 @@ PSFContour(Di = 2400, tr = 13, Pft = 1e-04, Cvmu = 0.1, Cvcov = 0.5, Sa = 100, c
 %%     ~~Describe \code{Sa} here~~
 }
   \item{clevel}{
-%%     ~~Describe \code{clevel} here~~
+Target reliabilities to be drawn
 }
   \item{ndiv}{
-%%     ~~Describe \code{ndiv} here~~
+ndiv*ndiv points on the Rt-lambda graph are evaluated for drawing countour
 }
 }
 \details{
@@ -68,8 +68,8 @@ PSFContour(Di = 2400, tr = 13, Pft = 1e-04, Cvmu = 0.1, Cvcov = 0.5, Sa = 100, c
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (Di = 2400, tr = 13, Pft = 1e-04, Cvmu = 0.1, Cvcov = 0.5, 
-    Sa = 100, clevel = c(1, 1e-04, 1e-06), ndiv = 10) 
+function (Di = 2400, tr = 13, Pft = 1e-04, Cvmu = 0.1, Cvcov = 0.5,
+    Sa = 100, clevel = c(1, 1e-04, 1e-06), ndiv = 10)
 {
     infile <- system.file("example.csv", package = "PSFCalc")
     aa <- read.csv(infile)
