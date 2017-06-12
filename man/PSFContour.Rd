@@ -8,7 +8,7 @@ Draw contour for specific PSF condition for PSF
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-PSFContour(Di = 2400, tr = 13, Pft = 1e-04, Cvmu = 0.1, Cvcov = 0.5, Sa = 100, clevel = c(1, 1e-04, 1e-06), ndiv = 10)
+PSFContour(Di = 2400, tr = 13, Cvmu = 0.1, Cvcov = 0.5, Sa = 100, clevel = c(1, 1e-04, 1e-06), ndiv = 10)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,9 +17,6 @@ PSFContour(Di = 2400, tr = 13, Pft = 1e-04, Cvmu = 0.1, Cvcov = 0.5, Sa = 100, c
 }
   \item{tr}{
 %%     ~~Describe \code{tr} here~~
-}
-  \item{Pft}{
-%%     ~~Describe \code{Pft} here~~
 }
   \item{Cvmu}{
 %%     ~~Describe \code{Cvmu} here~~
