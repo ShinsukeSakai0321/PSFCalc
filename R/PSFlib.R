@@ -1,6 +1,6 @@
 
 GMetalLoss <- R6::R6Class("GMetalLoss",
-                          inherit=Lbase,
+                          inherit=LimitState::Lbase,
                           public = list(
                             gcalc = function(){
                               ttime <- self$ttime
@@ -48,7 +48,7 @@ GMetalLoss <- R6::R6Class("GMetalLoss",
                               )
 
                             MetalLoss <- R6::R6Class("MetalLoss",
-                                                     inherit=LSFM,
+                                                     inherit=LimitState::LSFM,
                                                      public = list(
                                                        initialize = function(name,n,Mu,sigmmaX,dist,ttime){
                                                          super$initialize(name,n,Mu,sigmmaX,dist)
@@ -269,7 +269,7 @@ PSFControl <- R6::R6Class("PSFControl",
                               sigmmaX <- muX * COVX
                               ## 各確率変数の分布
                               dist <- c("gumbel", "gumbel", "normal", "normal" ,"normal" ,"normal" ,"normal" ,"normal")
-                              private$metal <- MetalLoss$new("MetalLoss",8,muX,sigmmaX,dist,ttime)
+                              private$metal <- PSFCalc::MetalLoss$new("MetalLoss",8,muX,sigmmaX,dist,ttime)
                             },
                             PfCalc2 = function(x,y,aa){
                               #xにシェルパラメータ,yにRtが入力されている場合の計算
