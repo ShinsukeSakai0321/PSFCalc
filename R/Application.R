@@ -1,7 +1,9 @@
 PSFEval<-function(Di=2400,tr=13,Pft=1e-4,Cvmu=0.1,Cvcov=0.5,Sa=100){
   infile <- system.file("example.csv",package="PSFCalc")
   aa <- read.csv(infile)
+  aa$Dimu<-Di; aa$trmu<-tr; aa$Cvmu<-Cvmu; aa$Cvcov<-Cvcov;
   psfcal<-PSFCalc::PSFControl$new(aa)
+  psfcal$Adjust(Sa=Sa)
   psfcal$PSFEval(Di=Di,tr=tr,Pft=Pft,Cvmu=Cvmu,Cvcov=Cvcov,Sa=Sa)
 }
 PSFContour<-function(Di=2400,tr=13,Cvmu=0.1,Cvcov=0.5,Sa=100,clevel=c(1,1e-4,1e-6),ndiv=10){
@@ -15,4 +17,21 @@ PSFContour<-function(Di=2400,tr=13,Cvmu=0.1,Cvcov=0.5,Sa=100,clevel=c(1,1e-4,1e-
   #ndiv <- 10 #x 軸，y 軸の分割数　10 × 10 の点
   psfcal$Contour(ndiv,clevel)#等高線描画のための計算
   psfcal$DrawContour(clevel)#等高線描画
+}
+ShellRt<-function(lambda=5,Rt=0.5,Di=2400,tr=13,Cvmu=0.1,Cvcov=0.5,Sa=100){
+  infile <- system.file("example.csv",package="PSFCalc")
+  aa <- read.csv(infile)
+  aa$Dimu<-Di; aa$trmu<-tr; aa$Cvmu<-Cvmu; aa$Cvcov<-Cvcov;
+  psfcal<-PSFCalc::PSFControl$new(aa)
+  psfcal$Adjust(Sa=Sa)
+  psfcal$ShellRt(lambda,Rt)
+}
+Target <- function(lambda=5,Pft=1e-4,Di=2400,tr=13,Cvmu=0.1,Cvcov=0.5,Sa=100){
+  infile <- system.file("example.csv",package="PSFCalc")
+  aa <- read.csv(infile)
+  aa$Dimu<-Di; aa$trmu<-tr; aa$Cvmu<-Cvmu; aa$Cvcov<-Cvcov;
+  psfcal<-PSFCalc::PSFControl$new(aa)
+  psfcal$Adjust(Sa)  #Pa=MAWP, SuのSaからの計算
+  psfcal$Adjust(Sa=Sa)
+  psfcal$Target(lambda,Pft)
 }
