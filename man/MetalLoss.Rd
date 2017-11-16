@@ -63,8 +63,10 @@ This is inheritted class of LSFM. As for Class LSFM, see LimitState::LSFM.
 #install.packages("devtools")
 #devtools::install_github("ShinsukeSakai0321/LimitState")
 library(LimitState)
-infile <- system.file("example.csv",package="PSFCalc")
-fdata <- read.csv(infile)
+#
+#Read example data from data directory
+data(example)
+fdata<-example
 muX <-  c(fdata$Cvmu, fdata$Pamu, fdata$trmu, fdata$nomu, fdata$Dimu, fdata$Sumu, fdata$smu, fdata$tmmmu)
 COVX <- c(fdata$Cvcov,fdata$Pacov,fdata$trcov,fdata$nocov,fdata$Dicov,fdata$Sucov,fdata$scov,fdata$tmmcov)
 sigmmaX <- muX * COVX
