@@ -63,6 +63,9 @@ MetalLoss <- R6::R6Class("MetalLoss",
                          psf[1] <- 1/psf[1]
                          psf[2] <- 1/psf[2]
                          psf
+                       },
+                       G=function(){
+                         private$lim$gcalc()
                        }
                      )
 )
@@ -222,6 +225,9 @@ PSFControl <- R6::R6Class("PSFControl",
                           min <- 0.01; max <- 0.99  #Rtの探索，下限，上限
                           GA <- GA::ga(type="real-valued", fitness=private$PfTarget,maxiter=10, monitor=NULL, min=min,max=max,Pft,lambda,private$aa_data)
                           GA@solution[1]
+                        },
+                        G=function(){
+                          private$metal$G()
                         },
                         SetCv_mu_cov = function(mu,cov){
                           private$aa_data$Cvmu <- mu

@@ -61,13 +61,15 @@ Public function
 #devtools::install_github("ShinsukeSakai0321/LimitState")
 library(LimitState)
 library(PSFCalc)
-infile <- system.file("example.csv",package="PSFCalc")
+#infile <- system.file("example.csv",package="PSFCalc")
 fdata <- read.csv(infile)
 ####Checking for one case ###
 Di <- 500; tr <- 10
 Cvmu <- 0.2; Cvcov<- 0.5
 ######################
-aa <- read.csv(infile)
+#aa <- read.csv(infile)
+data(example)
+aa<-example
 psfcal <- PSFCalc::PSFControl$new(aa)
 psfcal$SetDi_tr(Di,tr)
 psfcal$Adjust(Sa=100)  #Pa=MAWP and evaluates Su from Sa

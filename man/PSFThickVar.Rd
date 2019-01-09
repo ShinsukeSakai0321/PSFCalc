@@ -3,6 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
+Calculate PSF table for variouts thickness values and write the result to specified file
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -65,8 +66,8 @@ PSFThickVar(outfile = "example-res.csv", Pft = 1e-04, Cvmu = 0.1, Cvcov = 0.5, D
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (outfile = "example-res.csv", Pft = 1e-04, Cvmu = 0.1, 
-    Cvcov = 0.5, Di = 2400, tr = c(10, 20), Sa = 100) 
+function (outfile = "example-res.csv", Pft = 1e-04, Cvmu = 0.1,
+    Cvcov = 0.5, Di = 2400, tr = c(10, 20), Sa = 100)
 {
     i <- 0
     for (itr in 1:length(tr)) {
@@ -85,10 +86,10 @@ function (outfile = "example-res.csv", Pft = 1e-04, Cvmu = 0.1,
         aa$Cvcov <- Cvcov
         psfcal <- PSFCalc::PSFControl$new(aa)
         psfcal$Adjust(Sa = Sa)
-        rescalc <- psfcal$PSFEval(Di = Di, tr = tr[itr], Pft = Pft, 
+        rescalc <- psfcal$PSFEval(Di = Di, tr = tr[itr], Pft = Pft,
             Cvmu = Cvmu, Cvcov = Cvcov, Sa = Sa)
         options(warn = -1)
-        write.table(rescalc, outfile, sep = ",", quote = F, row.names = F, 
+        write.table(rescalc, outfile, sep = ",", quote = F, row.names = F,
             append = iflag)
         options(warn = 0)
     }

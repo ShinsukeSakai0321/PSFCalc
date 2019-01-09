@@ -47,7 +47,7 @@ GMetalLoss <- R6::R6Class("GMetalLoss",
                               )
                               )
 
-                            MetalLoss <- R6::R6Class("MetalLoss",
+MetalLoss <- R6::R6Class("MetalLoss",
                                                      inherit=LimitState::LSFM,
                                                      public = list(
                                                        initialize = function(name,n,Mu,sigmmaX,dist,ttime){
@@ -63,13 +63,17 @@ GMetalLoss <- R6::R6Class("GMetalLoss",
                                                          psf[1] <- 1/psf[1]
                                                          psf[2] <- 1/psf[2]
                                                          psf
+                                                       },
+                                                       G=function(){
+                                                         super$GetG()
                                                        }
                                                      )
-                            )
-                            Check <- R6::R6Class("Check",
+)
+Check <- R6::R6Class("Check",
                                                  inherit=LSFM,
                                                  public = list(
                                                    Calc = function(aa){
+                                                     #super$initialize(name,n,Mu,sigmmaX,dist)
                                                      private$lim <- GMetalLoss$new(private$n)
                                                      private$lim$SetX(private$muX)
                                                      private$lim$gcalc()
@@ -78,7 +82,7 @@ GMetalLoss <- R6::R6Class("GMetalLoss",
                                                      cat("dgdX=",private$lim$GetdGdX())
                                                    }
                                                  )
-                            )
+)
 PSFControl <- R6::R6Class("PSFControl",
                           public = list(
                             initialize = function(aa){
@@ -223,6 +227,9 @@ PSFControl <- R6::R6Class("PSFControl",
                               GA <- GA::ga(type="real-valued", fitness=private$PfTarget,maxiter=10, monitor=NULL, min=min,max=max,Pft,lambda,private$aa_data)
                               GA@solution[1]
                             },
+                            G=function(){
+                              private$metal$G()
+                            },
                             SetCv_mu_cov = function(mu,cov){
                               private$aa_data$Cvmu <- mu
                               private$aa_data$Cvcov <- cov
@@ -244,7 +251,7 @@ PSFControl <- R6::R6Class("PSFControl",
                                 da <- c(Di,tr,lambda[i],Rt[i],PMAWP,private$aa_data$ttime,Cvmu,Cvcov,Pft,self$ShellRt(lambda[i],Rt[i]))
                                 dd <- rbind(dd,da)
                               }
-                              colnames(dd) <- c("Di","tr","Shell P.","Rt","MAWP","Ti","Cv","Cvcov","Pft","Pf","PSF-Cv", "PSF-Pa", "PSF-tr", "PSF-no", "PSF-Di", "PSF-Su", "PSF-s", "PSF-tmm")
+                              colnames(dd) <- c("Di","tr","Shell P.","Rt","MAWP","Ti","Cv","Cvcov","Pft","Pf","PSFCv", "PSFPa", "PSFtr", "PSFno", "PSFDi", "PSFSu", "PSFs", "PSFtmm")
                               dd
                             }
                           ),

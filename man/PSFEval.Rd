@@ -6,6 +6,7 @@ Calculate PSF table for specific coditions with target reliability
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Calculate PSF table for the case with example case modifying the values specified by arguments. Shell parameter is varied from 1 to 15.
 }
 \usage{
 PSFEval(Di=2400,tr=13,Pft=1e-4,Cvmu=0.1,Cvcov=0.5,Sa=100)
