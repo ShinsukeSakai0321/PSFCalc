@@ -6,6 +6,7 @@
 Calculate PSF table for variouts thickness values and write the result to specified file
 }
 \description{
+Calculate PSF table for variouts thickness values and write the result to specified file
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
